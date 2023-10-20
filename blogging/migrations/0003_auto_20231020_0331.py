@@ -4,14 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("blogging", "0002_category"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name="category", options={"verbose_name_plural": "Categories"},
+            name="category",
+            options={"verbose_name_plural": "Categories"},
         ),
         migrations.AlterField(
             model_name="category",

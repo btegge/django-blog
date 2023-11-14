@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
 from blogging.serializers import UserSerializer, PostSerializer, CategorySerializer
 
+
 class BlogListView(ListView):
     queryset = Post.objects.exclude(published_date__exact=None).order_by(
         "-published_date"
@@ -18,12 +19,6 @@ class BlogDetailView(DetailView):
     queryset = Post.objects.exclude(published_date__exact=None)
     model = Post
     template_name = "blogging/detail.html"
-    # try:
-    #     post = published.get(pk=post_id)
-    # except Post.DoesNotExist:
-    #     raise Http404
-    # context = {'post': post}
-    # return render(request, 'blogging/detail.html', context)
 
 
 class BlogAddView(CreateView):
@@ -37,7 +32,8 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
+
+    queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
@@ -46,7 +42,8 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows posts to be viewed or edited.
     """
-    queryset = Post.objects.all().order_by('-published_date')
+
+    queryset = Post.objects.all().order_by("-published_date")
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
@@ -55,6 +52,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows categories to be viewed or edited.
     """
-    queryset = Category.objects.all().order_by('-name')
+
+    queryset = Category.objects.all().order_by("-name")
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]

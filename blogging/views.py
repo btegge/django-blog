@@ -1,6 +1,7 @@
 from blogging.models import Post
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
 
 
 class BlogListView(ListView):
@@ -21,3 +22,10 @@ class BlogDetailView(DetailView):
     #     raise Http404
     # context = {'post': post}
     # return render(request, 'blogging/detail.html', context)
+
+
+class BlogAddView(CreateView):
+    model = Post
+    template_name = "blogging/add.html"
+    fields = ["title", "text", "author"]
+    success_url = "/"

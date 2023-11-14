@@ -39,7 +39,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -48,7 +48,7 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     queryset = Post.objects.all().order_by('-published_date')
     serializer_class = PostSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -57,4 +57,4 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     queryset = Category.objects.all().order_by('-name')
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
